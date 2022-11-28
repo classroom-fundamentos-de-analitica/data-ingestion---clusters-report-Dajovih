@@ -19,7 +19,7 @@ def ingest_data():
     Rows=Rows[4:]
     for i in Rows:
         if re.match('^ +[0-9]+ +', i):
-            N_cluster, N_Palabras, Porcentaje, Principal = i.split()
+            N_cluster,N_Palabras,Porcentaje,Principal=i.split()
             Fila[0]=int(N_cluster)
             Fila[1]=int(N_Palabras)
             Fila[2]=float(Porcentaje.replace(',','.')) 
@@ -28,12 +28,12 @@ def ingest_data():
             Fila[3]+=Principal
         elif re.match('^\n', i) or re.match('^ +$', i):
             Fila[3] = Fila[3].replace('.', '') 
-            Fila.append(Fila)
+            Dt.append(Fila)
             Fila=[0, 0, 0, '']
         elif re.match('^ +[a-z]', i):
             Principal=i.split()
             Principal=' '.join(Principal)
             Fila[3]+=' '+Principal 
-    df = pd.DataFrame (Dt, columns = ['cluster', 'cantidad_de_palabras_clave', 'porcentaje_de_palabras_clave', 'principales_palabras_clave'])
+    df=pd.DataFrame (Dt, columns = ['cluster', 'cantidad_de_palabras_clave', 'porcentaje_de_palabras_clave', 'principales_palabras_clave'])
     return df
 
