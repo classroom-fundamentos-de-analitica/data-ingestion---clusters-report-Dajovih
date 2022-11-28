@@ -19,7 +19,7 @@ def ingest_data():
     Rows=Rows[4:]
     for i in Rows:
         if re.match('^ +[0-9]+ +', i):
-            N_cluster,N_Palabras,Porcentaje,Principal=i.split()
+            N_cluster,N_Palabras,Porcentaje,*Principal=i.split()
             Fila[0]=int(N_cluster)
             Fila[1]=int(N_Palabras)
             Fila[2]=float(Porcentaje.replace(',','.')) 
